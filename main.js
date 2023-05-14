@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({ path: "data/.env" });
 const puppeteer = require("puppeteer");
 
 (async () => {
@@ -10,7 +10,6 @@ const puppeteer = require("puppeteer");
     width: 1366,
     height: 768,
   });
-  
   await page.goto(process.env.gamepassLink);
   await page.click(".PurchaseButton");
   await page.waitForSelector('input[name="username"]', { timeout: 10000 });
@@ -41,9 +40,12 @@ const puppeteer = require("puppeteer");
       await browser.close();
     } else {
       await page.click(".PurchaseButton");
-      await page.click("#confirm-btn");
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      await page.screenshot({ path: 'pictures/purchasedGamepass.png', type: "png" });
+      // await page.click("#confirm-btn");
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+      await page.screenshot({
+        path: "pictures/purchasedGamepass.png",
+        type: "png",
+      });
     }
   } else {
     console.log("Login failed.");
