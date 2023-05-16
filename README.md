@@ -1,5 +1,7 @@
 # RobloxGamepassPurchaser BETA VERSION
 
+# Working on this that actually functions on an app
+
 **Made using Puppeteer, node.js, and npm**
 
 This script automatically logs in to your roblox account* and buys the specific gamepass*.
