@@ -1,6 +1,6 @@
 # RobloxGamepassPurchaser BETA VERSION
 
-# Working on this that actually functions on an app
+# Working on this that actually functions as an app
 
 **Made using Puppeteer, node.js, and npm**
 
