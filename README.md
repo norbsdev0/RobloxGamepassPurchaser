@@ -1,4 +1,4 @@
-# RobloxGamepassPurchaser v1.0.1
+# RGP Purchaser (Roblox Gamepass Purchaser) v1.0.1
 
 **Made using Puppeteer, node.js, and npm**
 
