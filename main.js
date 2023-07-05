@@ -12,15 +12,23 @@ const puppeteer = require("puppeteer");
   });
   await page.goto(process.env.gamepassLink);
   await page.click(".PurchaseButton");
+  try {
   await page.waitForSelector('input[name="username"]', { timeout: 10000 });
   await page.waitForSelector('input[name="password"]', { timeout: 10000 });
+  } catch(e) {
+    throw new Error("[Error] " + e)
+  }
   await page.type('input[name="username"]', process.env.username);
   await page.type('input[name="password"]', process.env.password);
-
+  
+  try {
   await Promise.all([
     page.waitForNavigation({ waitUntil: "networkidle0" }),
     page.click("#login-button"),
   ]);
+  } catch(e) {
+    throw new Error("[Error] Roblox bot verification has denied this login request, try again.")  
+  }
 
   const loggedInUsername = await page.$eval(
     ".text-overflow.age-bracket-label-username.font-caption-header",
@@ -33,21 +41,21 @@ const puppeteer = require("puppeteer");
       ".text-robux-lg.wait-for-i18n-format-render",
       (amount) => amount.textContent.trim()
     );
-    if (gamePassAmount != "100") {
-      //TODO: Make an alert
-      //For now we put failure lol
-      console.log("failure lol");
+
+    if (gamePassAmount != process.env.gamepassAmount) {
+      throw new Error("[Error] Gamepass amount is not the same as set gamepass amount in .env!");
       await browser.close();
     } else {
       await page.click(".PurchaseButton");
-      // await page.click("#confirm-btn");
+      await page.click("#confirm-btn");
       await new Promise((resolve) => setTimeout(resolve, 3000));
       await page.screenshot({
         path: "pictures/purchasedGamepass.png",
         type: "png",
       });
+      await browser.close();
     }
   } else {
-    console.log("Login failed.");
+    throw new Error("Login failed.");
   }
 })();
