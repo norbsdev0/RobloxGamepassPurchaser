@@ -1,18 +1,16 @@
-# RobloxGamepassPurchaser BETA VERSION
-
-# Working on this that actually functions as an app
+# RobloxGamepassPurchaser v1.0.1
 
 **Made using Puppeteer, node.js, and npm**
 
 This script automatically logs in to your roblox account* and buys the specific gamepass*.
-#### Note: \* You will need to provide your account username, password, and the gamepass you want the automated bot to buy into the .env file
+#### Note: \* You will need to provide your account username, account password, gamepass, and the set value of the gamepass (safeguard) into the .env file
 
 ## Features to add
-- An system that ensures you have enough robux to buy the gamepass
 - Checks if your roblox account and password is correct
 
 ## Issues
-Roblox Login Verification (ensures you aren't a bot)
+Roblox Login Verification (ensures you aren't a bot) Around 35% done
 
 ## Updates
-Not yet.
+- Added safeguard for gamepass values and set values (In case gamepass changes value and you buy it)
+- Overall code revamp
